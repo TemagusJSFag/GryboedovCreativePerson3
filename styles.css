@@ -1,0 +1,238 @@
+/* Цвета темы: в тёмном режиме меняются только эти переменные */
+body {
+    --bg: #faf8f4;
+    --text: #1f1f1f;
+    --muted: #6b6b6b;
+    --line: #d8d2c6;
+    --card-text: #1f1f1f;
+
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 20px 48px;
+
+    font-family: "PT Serif", Georgia, serif;
+    line-height: 1.6;
+    background-color: var(--bg);
+    color: var(--text);
+
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body.dark-theme {
+    --bg: rgb(24, 24, 24);
+    --text: #f2f2f2;
+    --muted: #a8a8a8;
+    --line: #3a3a3a;
+}
+
+/* Блок с подписью и тумблером в правом верхнем углу шапки */
+.theme-toggle {
+  margin-left: auto;
+  flex-shrink: 0;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* Контейнер тумблера */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 32px;
+  cursor: pointer;
+}
+
+/* Полностью скрываем стандартный чекбокс */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Оболочка ползунка (трек, по которому бегает круг) */
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #555555;
+  border-radius: 32px;
+  transition: background-color 0.25s ease;
+}
+
+/* Белый круглый переключатель */
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 6px;
+  top: 6px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+}
+
+/* Состояние: Включено (Чекбокс нажат) */
+input:checked + .slider {
+  background-color: #3b82f6;
+}
+
+/* Анимация движения круга вправо при включении */
+input:checked + .slider::before {
+  transform: translateX(38px);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+}
+
+/* ---------- Шапка ---------- */
+
+.prescription {
+    display: flex;
+    gap: 28px;
+}
+
+#griboedov {
+    flex-shrink: 0;
+    height: 300px;
+    width: 380px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* Заголовок и приветствие идут друг под другом, по центру высоты фото */
+.more-prescription {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
+.more-prescription h1,
+.more-prescription p {
+    margin: 0;
+}
+
+h1 {
+    font-size: 38px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+h2 {
+    margin: 36px 0 16px;
+    font-size: 26px;
+}
+
+p, tr, th, td {
+    font-size: 18px;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    background-color: var(--line);
+    margin: 36px 0 0;
+}
+
+/* ---------- Цветные карточки ---------- */
+
+/* Общий вид всех карточек: текст всегда тёмный, даже в тёмном режиме */
+.red-card,
+.green-card,
+.blue-card,
+.yellow-card,
+.orange-card,
+.blue-card-table {
+    color: var(--card-text);
+    border-radius: 14px;
+    padding: 6px 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.red-card    { background-color: rgb(255, 205, 212); border-left: 6px solid rgb(229, 115, 133); }
+.green-card  { background-color: rgb(186, 230, 192); border-left: 6px solid rgb(76, 160, 92); }
+.blue-card   { background-color: rgb(190, 193, 245); border-left: 6px solid rgb(99, 106, 214); }
+.yellow-card { background-color: rgb(255, 247, 176); border-left: 6px solid rgb(222, 196, 60); }
+.orange-card { background-color: rgb(248, 214, 192); border-left: 6px solid rgb(226, 138, 86); }
+
+.blue-card ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* ---------- «Горе от ума»: карточка и картинка рядом ---------- */
+
+/* align-items: center — карточка больше не растягивается на высоту картинки */
+.gore-ot-uma {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+#gore-ot-uma-img {
+    flex-shrink: 0;
+    height: 400px;
+    width: clamp(280px, 300px, 360px);
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* ---------- Таблица ---------- */
+
+.blue-card-table {
+    background-color: rgb(190, 193, 245);
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.45);
+}
+
+table, th, td, tr {
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+th, td {
+    padding: 10px 14px;
+    text-align: center;
+}
+
+th {
+    background-color: rgba(99, 106, 214, 0.25);
+}
+
+/* ---------- Телефоны: блоки встают друг под другом ---------- */
+
+@media (max-width: 760px) {
+    .prescription,
+    .gore-ot-uma {
+        flex-direction: column;
+    }
+
+    .theme-toggle {
+        order: -1;
+    }
+
+    #griboedov,
+    #gore-ot-uma-img {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .blue-card-table {
+        overflow-x: auto;
+    }
+}
